@@ -1,0 +1,7 @@
+name: MonopolyFarming
+version: ${project.version}
+main: com.heyyczer.monopolyfarming.Main
+description: Plugin complexo para jogar Monopoly no Minecraft
+api-version: '1.20'
+depend: [eco, Citizens, CommandAPI]
+prefix: Monopoly
