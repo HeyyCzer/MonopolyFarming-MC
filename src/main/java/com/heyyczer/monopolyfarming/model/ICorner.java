@@ -1,9 +1,6 @@
 package com.heyyczer.monopolyfarming.model;
 
-public interface IService {
-
-    String getName();
-    String getDescription();
+public interface ICorner {
 
     void callback(GamePlayer player);
 

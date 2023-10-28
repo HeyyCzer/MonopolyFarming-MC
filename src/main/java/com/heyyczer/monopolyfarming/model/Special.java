@@ -1,5 +1,7 @@
 package com.heyyczer.monopolyfarming.model;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import lombok.Getter;
@@ -9,19 +11,22 @@ import lombok.Setter;
 
 @Getter
 @RequiredArgsConstructor
-public class Property {
+public class Special {
 
     @Nullable
     @Setter
-    private GamePlayer owner;
-
-    @NonNull
-	private String name;
+	private GamePlayer owner;
 	
-    @NonNull
+	@NonNull
+	private String name;
+
+	@NonNull
+	private List<String> description;
+
+	@NonNull
 	private Integer price;
 	
-    @NonNull
-    private Integer rent;
+	@NonNull
+	private ISpecial special;
 
 }

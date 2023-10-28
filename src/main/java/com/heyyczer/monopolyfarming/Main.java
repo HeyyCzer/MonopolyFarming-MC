@@ -3,6 +3,7 @@ package com.heyyczer.monopolyfarming;
 import java.io.File;
 import java.util.List;
 
+import com.heyyczer.monopolyfarming.command.DadosCmd;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,6 +26,7 @@ public final class Main extends JavaPlugin {
 
     private static final List<ICommand> COMMANDS = List.of(
 //            new CreateProperty()
+            new DadosCmd()
     );
 
     @Override
