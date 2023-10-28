@@ -3,15 +3,15 @@ package com.heyyczer.monopolyfarming;
 import java.io.File;
 import java.util.List;
 
-import com.heyyczer.monopolyfarming.command.DadosCmd;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.heyyczer.monopolyfarming.command.DadosCmd;
 import com.heyyczer.monopolyfarming.event.ExitListener;
 import com.heyyczer.monopolyfarming.event.JoinListener;
 import com.heyyczer.monopolyfarming.job.GameStarter;
-import com.heyyczer.monopolyfarming.model.ICommand;
+import com.heyyczer.monopolyfarming.model.interfaces.ICommand;
 
 import lombok.Getter;
 import lombok.Setter;

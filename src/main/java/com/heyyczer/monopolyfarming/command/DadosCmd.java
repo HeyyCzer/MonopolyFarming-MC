@@ -1,15 +1,17 @@
 package com.heyyczer.monopolyfarming.command;
 
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+
 import com.heyyczer.monopolyfarming.Main;
 import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.helper.DiceHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
-import com.heyyczer.monopolyfarming.model.ICommand;
+import com.heyyczer.monopolyfarming.model.interfaces.ICommand;
+
 import dev.jorel.commandapi.CommandAPICommand;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class DadosCmd implements ICommand {
 

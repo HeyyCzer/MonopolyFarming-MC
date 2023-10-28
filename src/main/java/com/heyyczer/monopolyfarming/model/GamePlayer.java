@@ -25,11 +25,13 @@ public class GamePlayer {
     @Setter
     private NPC playerNpc;
 
-    @Getter
 	private int balance = 1000000;
 	
-	@Getter
 	private int position = 1;
+
+	private boolean arrested = false;
+
+	private int skips = 0;
 
 	public void addBalance(int amount) {
 		balance += amount;
@@ -55,8 +57,6 @@ public class GamePlayer {
 						gamePlayer.getPlayer().teleport(room.getTiles().get(gamePlayer.getPosition()).getLocation().clone().add(0.5f, 1.0f, 0.5f));
 					}
 				});
-		// room.setPlayers(room.getPlayers());
-		// GameController.GAMES.put(gameUUID, room);
 	}
 
 }

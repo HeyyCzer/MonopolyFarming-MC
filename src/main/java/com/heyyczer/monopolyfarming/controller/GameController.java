@@ -16,8 +16,8 @@ import com.heyyczer.monopolyfarming.game.special.TerraNovaTile;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
-import com.heyyczer.monopolyfarming.model.ICorner;
-import com.heyyczer.monopolyfarming.model.ISpecial;
+import com.heyyczer.monopolyfarming.model.interfaces.ICorner;
+import com.heyyczer.monopolyfarming.model.interfaces.ISpecial;
 
 public class GameController {
 

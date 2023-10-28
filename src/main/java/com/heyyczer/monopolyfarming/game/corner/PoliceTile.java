@@ -1,7 +1,7 @@
 package com.heyyczer.monopolyfarming.game.corner;
 
 import com.heyyczer.monopolyfarming.model.GamePlayer;
-import com.heyyczer.monopolyfarming.model.ICorner;
+import com.heyyczer.monopolyfarming.model.interfaces.ICorner;
 
 public class PoliceTile implements ICorner {
 
