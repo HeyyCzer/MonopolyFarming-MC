@@ -1,5 +1,6 @@
 package com.heyyczer.monopolyfarming.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -21,7 +22,7 @@ import com.onarandombox.MultiverseCore.api.MVWorldManager;
 public class MapController {
 
 	public static Map<Integer, Tile> prepareMap(UUID uuid) {
-		final Map<Integer, Tile> tiles = GameController.GAMES.get(uuid).getTiles();
+		final Map<Integer, Tile> tiles = new HashMap<>();
 
 		// Clone the World
 		MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
