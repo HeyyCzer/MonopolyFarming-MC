@@ -18,6 +18,6 @@ public class Special {
 	private GamePlayer owner;
 	
 	@NonNull
-	private ISpecial special;
+	private ISpecial handler;
 
 }

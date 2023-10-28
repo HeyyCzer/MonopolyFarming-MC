@@ -11,6 +11,6 @@ import lombok.RequiredArgsConstructor;
 public class Corner {
 
 	@NonNull
-	private ICorner corner;
+	private ICorner handler;
 
 }

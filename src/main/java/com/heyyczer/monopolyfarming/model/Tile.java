@@ -101,7 +101,7 @@ public class Tile {
 				}
 				break;
 		}
-		
+
 		final String hologramId = uuid + "-tile-" + this.getIndex();
 		final Hologram holo = DHAPI.getHologram(hologramId);
 
@@ -118,6 +118,20 @@ public class Tile {
 			ownedHolo = DHAPI.createHologram(hologramId + "-owned", holoLoc, ownedHologramLines);
 			ownedHolo.setDefaultVisibleState(false);
 			ownedHolo.show(owner, 1);
+		}
+	}
+	
+	public void onPlayerLand(GamePlayer player, int diceValue) {
+		switch (this.getType()) {
+			case CORNER:
+				this.getCorner().getHandler().onPlayerLand(player, this, diceValue);
+				break;
+			case PURCHASABLE:
+				this.getProperty().onPlayerLand(player, this, diceValue);
+				break;
+			case SPECIAL:
+				this.getSpecial().getHandler().onPlayerLand(player, this, diceValue);
+				break;
 		}
 	}
 

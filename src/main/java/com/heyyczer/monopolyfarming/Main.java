@@ -19,8 +19,8 @@ import lombok.Setter;
 public final class Main extends JavaPlugin {
 
     @Getter @Setter
-    public static Plugin plugin = null;
-
+	public static Plugin plugin = null;
+	
     @Getter @Setter
     private static YamlConfiguration tilesConfig;
 
@@ -31,7 +31,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Main.setPlugin(this);
+		Main.setPlugin(this);
         GameStarter.startRunnable();
 
         // Connect to database

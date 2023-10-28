@@ -12,18 +12,17 @@ import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+
 public class GameStarter {
 
     public static void startRunnable() {
         Bukkit.getScheduler().runTaskTimer(Main.getPlugin(), task -> {
 			for (Map.Entry<UUID, GameRoom> game : GameController.GAMES.entrySet()) {
-				System.out.println("Game: " + game.getKey() + " - " + game.getValue().getStatus() + " - "
-						+ game.getValue().getPlayers().size());
-				System.out.println("Players: ");
-				for (GamePlayer gp : game.getValue().getPlayers()) {
-					System.out.println("NAME: " + gp.getPlayer().getName() + " - $" + gp.getBalance() + " - POS: " + gp.getPosition());
+				for (GamePlayer player : game.getValue().getPlayers()) {
+					player.getPlayer().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§aSaldo: §b$" + player.getBalance()));
 				}
-				System.out.println();
 
                 if (game.getValue().getStatus() != GameStatus.STARTING || game.getValue().getPlayers().size() < 2) continue;
 
