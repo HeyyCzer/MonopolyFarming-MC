@@ -2,29 +2,593 @@ locations:
   tile-1:
     name: 'Início'
     type: CORNER
+    corner: GO
     location:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      pitch: 0.0
-      yaw: 0.0
+      x: 89
+      y: 66
+      z: 89
+      yaw: 89.330605
   tile-2:
-    name: 'Fazenda'
+    name: Campo
     type: PURCHASABLE
-    schematic: farm1
+    price: 10000
+    schematic: campo1
     location:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      pitch: 0.0
-      yaw: 0.0
+      x: 78
+      y: 66
+      z: 91
+      yaw: 89.639046
+  tile-3:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 66
+      y: 66
+      z: 91
+      yaw: 89.02216
+  tile-4:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 54
+      y: 66
+      z: 91
+      yaw: 89.84467
+  tile-5:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 42
+      y: 66
+      z: 91
+      yaw: 88.91935
+  tile-6:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 30
+      y: 66
+      z: 91
+      yaw: 89.639046
+  tile-7:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 18
+      y: 66
+      z: 91
+      yaw: 89.94749
   tile-8:
-    name: 'Ações do Guarani'
-    type: SERVICE
-    service: GUARANI
+    name: 'Ações - Guarani'
+    type: SPECIAL
+    special: GUARANI
     location:
-      x: 0.0
-      y: 0.0
-      z: 0.0
-      pitch: 0.0
-      yaw: 0.0
+      x: 6
+      y: 66
+      z: 91
+      yaw: 89.02216
+  tile-9:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -6
+      y: 66
+      z: 91
+      yaw: 89.53623
+  tile-10:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -18
+      y: 66
+      z: 91
+      yaw: 88.91935
+  tile-11:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -30
+      y: 66
+      z: 91
+      yaw: 89.22779
+  tile-12:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -42
+      y: 66
+      z: 91
+      yaw: 89.84476
+  tile-13:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -54
+      y: 66
+      z: 91
+      yaw: 89.74197
+  tile-14:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -66
+      y: 66
+      z: 91
+      yaw: 89.741974
+  tile-15:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -78
+      y: 66
+      z: 91
+      yaw: 89.02222
+  tile-16:
+    name: 'Polícia Federal'
+    type: CORNER
+    corner: POLICIA_FEDERAL
+    location:
+      x: -89
+      y: 66
+      z: 89
+      yaw: 178.88121
+  tile-17:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: 78
+      yaw: 178.88121
+  tile-18:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: 66
+      yaw: 178.7784
+  tile-19:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: 54
+      yaw: -179.57658
+  tile-20:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: 42
+      yaw: -179.57658
+  tile-21:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: 30
+      yaw: -179.57658
+  tile-22:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: 18
+      yaw: -179.57658
+  tile-23:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: 6
+      yaw: -179.57658
+  tile-24:
+    name: 'Aviação Agrícola'
+    type: SPECIAL
+    special: AVIACAO
+    location:
+      x: -91
+      y: 66
+      z: -6
+      yaw: -179.57658
+  tile-25:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: -18
+      yaw: -179.57658
+  tile-26:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: -30
+      yaw: -179.57658
+  tile-27:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: -42
+      yaw: -179.57658
+  tile-28:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: -54
+      yaw: -179.57658
+  tile-29:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: -66
+      yaw: -179.57658
+  tile-30:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -91
+      y: 66
+      z: -78
+      yaw: -179.78221
+  tile-31:
+    name: 'Vá para a Cadeia'
+    type: CORNER
+    corner: GO_TO_JAIL
+    location:
+      x: -89
+      y: 66
+      z: -89
+      yaw: -90.6438
+  tile-32:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -78
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-33:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -66
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-34:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -54
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-35:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -42
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-36:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -30
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-37:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -18
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-38:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: -6
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-39:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 6
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-40:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 18
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-41:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 30
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-42:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 42
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-43:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 54
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-44:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 66
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-45:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 78
+      y: 66
+      z: -91
+      yaw: -90.6438
+  tile-46:
+    name: 'Feira do Agricultor'
+    type: CORNER
+    corner: FREE_PARKING
+    location:
+      x: 89
+      y: 66
+      z: -89
+      yaw: -0.16772461
+  tile-47:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: -78
+      yaw: 0.037902832
+  tile-48:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: -66
+      yaw: 0.55197144
+  tile-49:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: -54
+      yaw: 0.037902832
+  tile-50:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: -42
+      yaw: -0.47616577
+  tile-51:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: -30
+      yaw: 0.4491577
+  tile-52:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: -18
+      yaw: -0.5789795
+  tile-53:
+    name: 'Ações - Terra Nova'
+    type: SPECIAL
+    special: TERRANOVA
+    location:
+      x: 91
+      y: 66
+      z: -6
+      yaw: -0.16772461
+  tile-54:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: 6
+      yaw: 0.14071655
+  tile-55:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: 18
+      yaw: -0.5789795
+  tile-56:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: 30
+      yaw: 0.037902832
+  tile-57:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: 42
+      yaw: 0.55197144
+  tile-58:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: 54
+      yaw: -0.16772461
+  tile-59:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: 66
+      yaw: -0.16772461
+  tile-60:
+    name: Campo
+    type: PURCHASABLE
+    price: 10000
+    schematic: campo1
+    location:
+      x: 91
+      y: 66
+      z: 78
+      yaw: -0.16772461

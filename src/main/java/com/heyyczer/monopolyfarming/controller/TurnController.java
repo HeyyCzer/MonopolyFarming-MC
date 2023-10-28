@@ -2,6 +2,7 @@ package com.heyyczer.monopolyfarming.controller;
 
 import java.util.UUID;
 
+import lombok.Setter;
 import org.bukkit.entity.Player;
 
 import com.heyyczer.monopolyfarming.helper.TitleHelper;
@@ -19,6 +20,9 @@ public class TurnController {
 		this.uuid = uuid;
 	}
 
+	@Getter @Setter
+    private boolean waiting = false;
+
     public int CURRENT_PLAYER_INDEX = 0;
 
 	public void nextPlayer() {
@@ -31,7 +35,7 @@ public class TurnController {
 
 		gameRoom.getPlayers().forEach(p -> {
 			if (p.getPlayer().getUniqueId() != player.getUniqueId()) {
-				TitleHelper.sendTitle(player, "§c§lOPONENTE", "§fAguarde enquanto §e" + player.getName() + " §frealiza a jogada", 0, 5000, 0);
+				TitleHelper.sendTitle(p.getPlayer(), "§c§lOPONENTE", "§fAguarde enquanto §e" + player.getName() + " §frealiza a jogada", 0, 5000, 0);
 
 				p.getPlayer()
 						.sendMessage("§c§lOPONENTE §fAguarde enquanto §e" + player.getName() + " §frealiza a jogada");
