@@ -1,4 +1,4 @@
-package com.heyyczer.monopolyfarming.jobs;
+package com.heyyczer.monopolyfarming.job;
 
 import java.util.Map;
 import java.util.UUID;
@@ -6,7 +6,8 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 
 import com.heyyczer.monopolyfarming.Main;
-import com.heyyczer.monopolyfarming.controllers.GameController;
+import com.heyyczer.monopolyfarming.controller.GameController;
+import com.heyyczer.monopolyfarming.helper.TitleHelper;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
 
@@ -22,7 +23,7 @@ public class GameStarter {
 				int timeToStart = game.getValue().getTimeToStart();
 
 				game.getValue().getPlayers().forEach(player -> {
-					player.getPlayer().sendTitle("§a§lINICIANDO", "O jogo iniciará em §e" + timeToStart + " segundos", 0, 20, 0);
+					TitleHelper.sendTitle(player.getPlayer(), "§a§lINICIANDO", "O jogo iniciará em §e" + timeToStart + " segundos", 0, 5000, 0);
 				});
 
                 GameRoom newGame = game.getValue();

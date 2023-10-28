@@ -16,7 +16,8 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.heyyczer.monopolyfarming.Main;
-import com.heyyczer.monopolyfarming.controllers.TurnController;
+import com.heyyczer.monopolyfarming.controller.TurnController;
+import com.heyyczer.monopolyfarming.helper.TitleHelper;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
 
@@ -53,10 +54,7 @@ public class GameRoom {
 
 	public void startGame() {
 		for (GamePlayer player : this.getPlayers()) {
-			player.getPlayer().sendTitle(
-					"§e§lINICIANDO...",
-					"O mapa está sendo preparado, aguarde...",
-					0, 30 * 20, 0);
+			TitleHelper.sendTitle(player.getPlayer(), "§e§lINICIANDO...", "O mapa está sendo preparado, aguarde...", 0, 30000, 0);
 			player.getPlayer().sendMessage("§e§lINICIANDO... §fO mapa está sendo preparado, aguarde...");
 		}
 
@@ -97,10 +95,7 @@ public class GameRoom {
 
 		for (GamePlayer player : this.getPlayers()) {
 			player.getPlayer().teleport(firstTileLoc);
-			player.getPlayer().sendTitle(
-					"§b§lINICIADO",
-					"Tenha um ótimo jogo :D",
-					0, 10 * 20, 0);
+			TitleHelper.sendTitle(player.getPlayer(), "§b§lINICIADO", "Tenha um ótimo jogo :D", 0, 10000, 0);
 			player.getPlayer().setGameMode(GameMode.ADVENTURE);
 			player.getPlayer().sendMessage("§b§lINICIADO! §fO mapa está pronto, tenha um ótimo jogo :D");
 		}

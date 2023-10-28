@@ -1,9 +1,10 @@
-package com.heyyczer.monopolyfarming.controllers;
+package com.heyyczer.monopolyfarming.controller;
 
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
+import com.heyyczer.monopolyfarming.helper.TitleHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 
@@ -30,20 +31,15 @@ public class TurnController {
 
 		gameRoom.getPlayers().forEach(p -> {
 			if (p.getPlayer().getUniqueId() != player.getUniqueId()) {
-				p.getPlayer().sendTitle(
-						"§c§lOPONENTE",
-						"§fAguarde enquanto §e" + player.getName() + " §frealiza a jogada",
-						0, 100, 0);
+				TitleHelper.sendTitle(player, "§c§lOPONENTE", "§fAguarde enquanto §e" + player.getName() + " §frealiza a jogada", 0, 5000, 0);
+
 				p.getPlayer()
 						.sendMessage("§c§lOPONENTE §fAguarde enquanto §e" + player.getName() + " §frealiza a jogada");
 			}
 		});
 		
-        player.sendTitle(
-                "§a§lSUA VEZ!",
-                "§fDigite §7/dados §fpara jogar os dados",
-                0, 100, 0
-		);
+		TitleHelper.sendTitle(player, "§a§lSUA VEZ!", "§fDigite §7/dados §fpara jogar os dados", 0, 5000, 0);
+
 		player.sendMessage("§a§lSUA VEZ! §fDigite §7/dados §fpara jogar os dados");
     }
 

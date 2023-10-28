@@ -1,4 +1,4 @@
-package com.heyyczer.monopolyfarming.events;
+package com.heyyczer.monopolyfarming.event;
 
 import java.util.ArrayList;
 
@@ -7,11 +7,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.heyyczer.monopolyfarming.controllers.GameController;
+import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
+
+import net.kyori.adventure.text.Component;
 
 public class ExitListener implements Listener {
 
@@ -24,7 +26,7 @@ public class ExitListener implements Listener {
 				.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 
 		if (players.size() < 2) {
-			players.forEach(player -> player.getPlayer().kickPlayer("§cO jogo foi cancelado devido a falta de jogadores!"));
+			players.forEach(player -> player.getPlayer().kick(Component.text("§cO jogo foi cancelado devido a falta de jogadores!")));
 			GameController.GAMES.remove(gameRoom.getUuid());
 			
 			MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");

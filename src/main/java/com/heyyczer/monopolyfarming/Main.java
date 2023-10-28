@@ -7,9 +7,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.heyyczer.monopolyfarming.events.ExitListener;
-import com.heyyczer.monopolyfarming.events.JoinListener;
-import com.heyyczer.monopolyfarming.jobs.GameStarter;
+import com.heyyczer.monopolyfarming.event.ExitListener;
+import com.heyyczer.monopolyfarming.event.JoinListener;
+import com.heyyczer.monopolyfarming.job.GameStarter;
 import com.heyyczer.monopolyfarming.model.ICommand;
 
 import lombok.Getter;

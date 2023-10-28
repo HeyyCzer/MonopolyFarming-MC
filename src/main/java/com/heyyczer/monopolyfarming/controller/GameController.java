@@ -1,4 +1,4 @@
-package com.heyyczer.monopolyfarming.controllers;
+package com.heyyczer.monopolyfarming.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;

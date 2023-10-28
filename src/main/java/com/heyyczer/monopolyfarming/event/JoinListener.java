@@ -1,4 +1,4 @@
-package com.heyyczer.monopolyfarming.events;
+package com.heyyczer.monopolyfarming.event;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.heyyczer.monopolyfarming.controllers.GameController;
+import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;

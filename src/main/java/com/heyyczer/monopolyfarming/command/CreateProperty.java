@@ -1,4 +1,4 @@
-package com.heyyczer.monopolyfarming.commands;
+package com.heyyczer.monopolyfarming.command;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,9 +42,11 @@ public class CreateProperty implements ICommand {
                     Set<String> list = config.getConfigurationSection("locations").getKeys(false);
 
                     final int index = (list.size() + 1);
-                    final String prefix = "locations.tile-" + index;
+					final String prefix = "locations.tile-" + index;
 
 					final String name = (String) args.get("name");
+					if (name == null)
+						return;
 
                     config.set(prefix + ".name", name.replace("_", " "));
                     config.set(prefix + ".type", args.get("type"));
