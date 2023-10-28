@@ -1,23 +1,29 @@
 package com.heyyczer.monopolyfarming.jobs;
 
+import java.util.Map;
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
+
 import com.heyyczer.monopolyfarming.Main;
 import com.heyyczer.monopolyfarming.controllers.GameController;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
-import org.bukkit.Bukkit;
-
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class GameStarter {
 
     public static void startRunnable() {
-        Bukkit.getAsyncScheduler().runAtFixedRate(Main.getPlugin(), task -> {
-            for (Map.Entry<UUID, GameRoom> game : GameController.GAMES.entrySet()) {
-                if (game.getValue().getStatus() != GameStatus.STARTING) continue;
+        Bukkit.getScheduler().runTaskTimer(Main.getPlugin(), task -> {
+			for (Map.Entry<UUID, GameRoom> game : GameController.GAMES.entrySet()) {
+				System.out.println("Game: " + game.getKey() + " - " + game.getValue().getStatus() + " - " + game.getValue().getPlayers().size());
 
-                int timeToStart = game.getValue().getTimeToStart();
+                if (game.getValue().getStatus() != GameStatus.STARTING || game.getValue().getPlayers().size() < 2) continue;
+
+				int timeToStart = game.getValue().getTimeToStart();
+
+				game.getValue().getPlayers().forEach(player -> {
+					player.getPlayer().sendTitle("§a§lINICIANDO", "O jogo iniciará em §e" + timeToStart + " segundos", 0, 20, 0);
+				});
 
                 GameRoom newGame = game.getValue();
                 if (timeToStart <= 0) {
@@ -30,7 +36,7 @@ public class GameStarter {
 
                 GameController.GAMES.put(game.getKey(), newGame);
             }
-        }, 1L, 1L, TimeUnit.SECONDS);
+        }, 20L, 20L);
     }
 
 }

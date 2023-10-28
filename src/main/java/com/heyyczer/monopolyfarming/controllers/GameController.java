@@ -1,6 +1,12 @@
 package com.heyyczer.monopolyfarming.controllers;
 
-import com.heyyczer.monopolyfarming.Main;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import org.bukkit.entity.Player;
+
 import com.heyyczer.monopolyfarming.game.specialtiles.AviaoTile;
 import com.heyyczer.monopolyfarming.game.specialtiles.GuaraniTile;
 import com.heyyczer.monopolyfarming.game.specialtiles.TerraNovaTile;
@@ -8,14 +14,10 @@ import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
 import com.heyyczer.monopolyfarming.model.IService;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
-import java.util.*;
 
 public class GameController {
 
-    private static Map<String, IService> SERVICES = new HashMap<>() {{
+    public static Map<String, IService> SERVICES = new HashMap<>() {{
         put("GUARANI", new GuaraniTile());
         put("AVIACAO", new AviaoTile());
         put("TERRA_NOVA", new TerraNovaTile());
@@ -23,23 +25,27 @@ public class GameController {
 
     public static Map<UUID, GameRoom> GAMES = new HashMap<>();
 
-    public static void createGame() {
-        final UUID gameUUID = UUID.randomUUID();
+	public static UUID createGame() {
+		final UUID gameUUID = UUID.randomUUID();
 
-        List<Player> players = (List<Player>) Bukkit.getServer().getOnlinePlayers();
-        List<GamePlayer> gamePlayers = new ArrayList<>();
+		GameRoom game = new GameRoom(gameUUID, new ArrayList<>());
+		game.setStatus(GameStatus.STARTING);
+		game.setTimeToStart(10);
+		// game.setTimeToStart(60);
+		GAMES.put(gameUUID, game);
 
-        for (Player player : players) {
-            gamePlayers.add(new GamePlayer(
-                    gameUUID,
-                    player
-            ));
-        }
-
-        GameRoom game = new GameRoom(gamePlayers);
-        game.setStatus(GameStatus.STARTING);
-        game.setTimeToStart(10);
-        GAMES.put(gameUUID, game);
-    }
+		return gameUUID;
+	}
+	
+	public static GameRoom getGameRoomByPlayer(Player player) {
+		for (GameRoom gameRoom : GAMES.values()) {
+			for (GamePlayer gamePlayer : gameRoom.getPlayers()) {
+				if (gamePlayer.getPlayer().getUniqueId() == player.getUniqueId()) {
+					return gameRoom;
+				}
+			}
+		}
+		return null;
+	}
 
 }

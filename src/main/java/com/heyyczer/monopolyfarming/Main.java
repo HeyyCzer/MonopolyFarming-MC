@@ -1,17 +1,19 @@
 package com.heyyczer.monopolyfarming;
 
-import com.heyyczer.monopolyfarming.database.ConnectionFactory;
-import com.heyyczer.monopolyfarming.events.JoinListener;
-import com.heyyczer.monopolyfarming.jobs.GameStarter;
-import com.heyyczer.monopolyfarming.model.ICommand;
-import lombok.Getter;
-import lombok.Setter;
+import java.io.File;
+import java.util.List;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.util.List;
+import com.heyyczer.monopolyfarming.events.ExitListener;
+import com.heyyczer.monopolyfarming.events.JoinListener;
+import com.heyyczer.monopolyfarming.jobs.GameStarter;
+import com.heyyczer.monopolyfarming.model.ICommand;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public final class Main extends JavaPlugin {
 
@@ -31,12 +33,13 @@ public final class Main extends JavaPlugin {
         GameStarter.startRunnable();
 
         // Connect to database
-        ConnectionFactory.open();
+        // ConnectionFactory.open();
 
         for (ICommand command : COMMANDS)
             command.register();
 
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        getServer().getPluginManager().registerEvents(new ExitListener(), this);
 
         File tilesYml = new File(this.getDataFolder(), "tiles.yml");
         if (!tilesYml.exists()) {

@@ -1,13 +1,14 @@
 package com.heyyczer.monopolyfarming.model;
 
+import java.util.UUID;
+
+import org.bukkit.entity.Player;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.citizensnpcs.api.npc.NPC;
-import org.bukkit.entity.Player;
-
-import java.util.UUID;
 
 @Getter
 @RequiredArgsConstructor
@@ -23,7 +24,11 @@ public class GamePlayer {
     private NPC playerNpc;
 
     @Getter @Setter
-    private int balance;
+	private int balance;
+	
+	@Getter
+	@Setter
+	private int position;
 
     @Setter
     private double rentMultiplier = 1.0;

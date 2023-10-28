@@ -1,11 +1,11 @@
 package com.heyyczer.monopolyfarming.model;
 
+import javax.annotation.Nullable;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import javax.annotation.Nullable;
 
 @Getter
 @RequiredArgsConstructor
@@ -16,7 +16,8 @@ public class Property {
     private GamePlayer owner;
 
     @NonNull
-    private String name;
+	private String name;
+	
     @NonNull
     private Float price;
 

@@ -1,18 +1,20 @@
 package com.heyyczer.monopolyfarming.commands;
 
-import com.heyyczer.monopolyfarming.Main;
-import com.heyyczer.monopolyfarming.model.ICommand;
-import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.CommandPermission;
-import dev.jorel.commandapi.arguments.IntegerArgument;
-import dev.jorel.commandapi.arguments.StringArgument;
+import java.io.File;
+import java.io.IOException;
+import java.util.Set;
+
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Set;
+import com.heyyczer.monopolyfarming.Main;
+import com.heyyczer.monopolyfarming.model.ICommand;
+
+import dev.jorel.commandapi.CommandAPICommand;
+import dev.jorel.commandapi.CommandPermission;
+import dev.jorel.commandapi.arguments.IntegerArgument;
+import dev.jorel.commandapi.arguments.StringArgument;
 
 public class CreateProperty implements ICommand {
 
@@ -42,7 +44,8 @@ public class CreateProperty implements ICommand {
                     final int index = (list.size() + 1);
                     final String prefix = "locations.tile-" + index;
 
-                    final String name = (String) args.get("name");
+					final String name = (String) args.get("name");
+
                     config.set(prefix + ".name", name.replace("_", " "));
                     config.set(prefix + ".type", args.get("type"));
 
