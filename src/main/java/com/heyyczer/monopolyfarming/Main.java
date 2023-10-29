@@ -3,23 +3,19 @@ package com.heyyczer.monopolyfarming;
 import java.io.File;
 import java.util.List;
 
-import com.heyyczer.monopolyfarming.command.DadosCmd;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.mineacademy.fo.plugin.SimplePlugin;
 
+import com.heyyczer.monopolyfarming.command.DadosCmd;
 import com.heyyczer.monopolyfarming.event.ExitListener;
 import com.heyyczer.monopolyfarming.event.JoinListener;
 import com.heyyczer.monopolyfarming.job.GameStarter;
-import com.heyyczer.monopolyfarming.model.ICommand;
+import com.heyyczer.monopolyfarming.model.interfaces.ICommand;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public final class Main extends JavaPlugin {
-
-    @Getter @Setter
-    public static Plugin plugin = null;
+public class Main extends SimplePlugin {
 
     @Getter @Setter
     private static YamlConfiguration tilesConfig;
@@ -30,8 +26,7 @@ public final class Main extends JavaPlugin {
     );
 
     @Override
-    public void onEnable() {
-        Main.setPlugin(this);
+    public void onPluginStart() {
         GameStarter.startRunnable();
 
         // Connect to database
@@ -53,7 +48,7 @@ public final class Main extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() {
+    public void onPluginStop() {
         // Plugin shutdown logic
     }
 

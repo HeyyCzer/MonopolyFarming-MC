@@ -1,8 +1,8 @@
 package com.heyyczer.monopolyfarming.model;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
+
+import com.heyyczer.monopolyfarming.model.interfaces.ISpecial;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -18,15 +18,6 @@ public class Special {
 	private GamePlayer owner;
 	
 	@NonNull
-	private String name;
-
-	@NonNull
-	private List<String> description;
-
-	@NonNull
-	private Integer price;
-	
-	@NonNull
-	private ISpecial special;
+	private ISpecial handler;
 
 }
