@@ -1,16 +1,15 @@
 package com.heyyczer.monopolyfarming.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
-
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 public class Tile {
@@ -75,12 +74,23 @@ public class Tile {
 				} else {
 					owner = this.getProperty().getOwner().getPlayer();
 
+					StringBuilder crops = new StringBuilder();
+//					3x Trigo | 1x Batata
+
+					for (Crop crop : this.getProperty().getCrops().stream().distinct().toList()) {
+						if (!crops.isEmpty()) {
+							crops.append(" &e| &7");
+						}
+						crops.append(this.getProperty().getCrops().stream().filter(c -> c == crop).count()).append("x ").append(crop.getName());
+					}
+
 					hologramLines.add("&d&lPropriedade");
 					hologramLines.add("&7" + this.getName());
 					hologramLines.add("&fProprietário: &d" + owner.getName());
 					hologramLines.add("&fPreço: &d$" + this.getPrice());
 					hologramLines.add("&fAluguel: &d$" + this.getRent());
 					hologramLines.add("#ICON: PLAYER_HEAD (" + owner.getName() + ")");
+					hologramLines.add(crops.toString());
 
 					ownedHologramLines.add("&b&lSua propriedade");
 					ownedHologramLines.add("&7" + this.getName());
@@ -103,12 +113,12 @@ public class Tile {
 		}
 
 		final String hologramId = uuid + "-tile-" + this.getIndex();
-		final Hologram holo = DHAPI.getHologram(hologramId);
+		Hologram holo = DHAPI.getHologram(hologramId);
 
 		if (holo != null) {
 			DHAPI.setHologramLines(holo, hologramLines);
 		} else {
-			DHAPI.createHologram(hologramId, holoLoc, hologramLines);
+			holo = DHAPI.createHologram(hologramId, holoLoc, hologramLines);
 		}
 
 		Hologram ownedHolo = DHAPI.getHologram(hologramId + "-owned");
@@ -117,7 +127,8 @@ public class Tile {
 		} else if (!ownedHologramLines.isEmpty()) {
 			ownedHolo = DHAPI.createHologram(hologramId + "-owned", holoLoc, ownedHologramLines);
 			ownedHolo.setDefaultVisibleState(false);
-			ownedHolo.show(owner, 1);
+			ownedHolo.setShowPlayer(owner);
+			holo.setHidePlayer(owner);
 		}
 	}
 	

@@ -2,7 +2,6 @@ package com.heyyczer.monopolyfarming.controller;
 
 import java.util.UUID;
 
-import lombok.Setter;
 import org.bukkit.entity.Player;
 
 import com.heyyczer.monopolyfarming.helper.TitleHelper;
@@ -10,6 +9,7 @@ import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class TurnController {
 
@@ -42,9 +42,9 @@ public class TurnController {
 			}
 		});
 		
-		TitleHelper.sendTitle(player, "§a§lSUA VEZ!", "§fDigite §7/dados §fpara jogar os dados", 0, 5000, 0);
+		TitleHelper.sendTitle(player, "§a§lSUA VEZ!", "§fDigite §b/dados §fpara jogar os dados", 0, 5000, 0);
 
-		player.sendMessage("§a§lSUA VEZ! §fDigite §7/dados §fpara jogar os dados");
+		player.sendMessage("§a§lSUA VEZ! §fDigite §b/dados §fpara jogar os dados");
     }
 
 }

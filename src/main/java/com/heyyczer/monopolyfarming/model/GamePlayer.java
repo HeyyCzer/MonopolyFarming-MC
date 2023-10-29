@@ -63,8 +63,8 @@ public class GamePlayer {
 			@Override
 			public void run() {
 				if (walked < totalTiles) {
-					gamePlayer.getPlayer().setLevel(totalTiles - walked);
 					walked++;
+					gamePlayer.getPlayer().setLevel(totalTiles - walked);
 					gamePlayer.setPosition((gamePlayer.getPosition() + 1) % room.getTiles().size());
 				} else {
 					gamePlayer.getPlayer().setExp(0);
@@ -75,7 +75,7 @@ public class GamePlayer {
 					runnable.run();
 				}
 			}
-		}.runTaskTimer(Main.getPlugin(), 20L, 20);
+		}.runTaskTimer(Main.getInstance(), 20L, 20);
 	}
 
 	public void updatePlayer() {

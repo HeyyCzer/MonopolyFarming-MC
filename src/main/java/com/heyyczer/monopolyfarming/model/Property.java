@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.heyyczer.monopolyfarming.menu.PurchaseMenu;
 import com.heyyczer.monopolyfarming.menu.UpgradeMenu;
+import com.heyyczer.monopolyfarming.menu.PurchaseMenu;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +26,12 @@ public class Property {
 	public void onPlayerLand(GamePlayer player, Tile tile, int diceValue) {
 		// Can purchase
 		if (owner == null) {
-			PurchaseMenu.show(player, tile);
+			new PurchaseMenu(player.getPlayer()).displayTo(player.getPlayer());
 
 
 		// Is the owner
 		} else if (owner.equals(player)) {
-			UpgradeMenu.show(player, tile);
+			new UpgradeMenu(player.getPlayer()).displayTo(player.getPlayer());
 
 		// Is owned by someone else
 		} else {

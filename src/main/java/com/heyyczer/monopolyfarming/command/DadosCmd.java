@@ -43,12 +43,12 @@ public class DadosCmd implements ICommand {
                     int number2 = DiceHelper.getRandomNumber();
                     int total = number1 + number2;
 
-                    player.sendMessage("§aVocê tirou §f" + number1 + " §ae §f" + number2 + " §anos dados. Andando §f" + total + " §acasas...");
+                    player.sendMessage("§aVocê tirou §b" + number1 + " §ae §b" + number2 + " §anos dados. Andando §b" + total + " §acasas...");
 
                     room.getPlayers().forEach(p -> {
                         if (p.getPlayer().getUniqueId() == player.getUniqueId()) return;
 
-                        p.getPlayer().sendMessage("§6" + player.getName() + " §etirou §f" + number1 + " §ee §f" + number2 + " §enos dados. Andando §f" + total + " §ecasas...");
+                        p.getPlayer().sendMessage("§6" + player.getName() + " §etirou §6" + number1 + " §ee §6" + number2 + " §enos dados. Andando §6" + total + " §ecasas...");
 					});
 					
 					currentPlayer.move(total, () -> {

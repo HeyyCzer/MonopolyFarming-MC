@@ -18,11 +18,14 @@ import net.md_5.bungee.api.chat.TextComponent;
 public class GameStarter {
 
     public static void startRunnable() {
-        Bukkit.getScheduler().runTaskTimer(Main.getPlugin(), task -> {
+        Bukkit.getScheduler().runTaskTimer(Main.getInstance(), task -> {
 			for (Map.Entry<UUID, GameRoom> game : GameController.GAMES.entrySet()) {
-				for (GamePlayer player : game.getValue().getPlayers()) {
-					player.getPlayer().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§aSaldo: §b$" + player.getBalance()));
-				}
+				if (game.getValue().getStatus() == GameStatus.STARTED) {
+                    for (GamePlayer player : game.getValue().getPlayers()) {
+                        player.getPlayer().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§aSaldo: §b$" + player.getBalance()));
+                    }
+                    continue;
+                }
 
                 if (game.getValue().getStatus() != GameStatus.STARTING || game.getValue().getPlayers().size() < 2) continue;
 
