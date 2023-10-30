@@ -5,7 +5,10 @@ import com.heyyczer.monopolyfarming.model.Crop;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.Tile;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.mineacademy.fo.menu.Menu;
@@ -18,7 +21,7 @@ import java.util.Optional;
 
 public class UpgradeMenu extends Menu {
 
-    private final Map<Integer, Button> BUTTONS = new HashMap<>();
+    private final Map<Integer, Button> buttons = new HashMap<>();
 
     public UpgradeMenu(Player player) {
         final GameRoom gameRoom = GameController.getGameRoomByPlayer(player);
@@ -28,10 +31,10 @@ public class UpgradeMenu extends Menu {
         final Tile tile = gameRoom.getTiles().get(gamePlayer.get().getPosition());
 
         setTitle("&8Melhorias");
-        setSize(9 * 5);
+        setSize(9 * 4);
 
         for (Crop crop : Crop.values()) {
-            BUTTONS.put(crop.getChestSlot(), Button.makeSimple(
+            buttons.put(crop.getChestSlot(), Button.makeSimple(
                     ItemCreator.of(crop.getIcon())
                             .name("&a" + crop.getName())
                             .lore(
@@ -54,6 +57,7 @@ public class UpgradeMenu extends Menu {
                         tile.getProperty().getCrops().add(crop);
 
                         p.sendMessage("§aVocê colocou §b" + crop.getName() + " §aem sua propriedade!");
+                        p.playSound(Sound.sound(org.bukkit.Sound.ENTITY_PLAYER_LEVELUP, Sound.Source.PLAYER, 0.5f, 1));
 
                         tile.buildHologram(gameRoom.getUuid());
                     }));
@@ -61,8 +65,19 @@ public class UpgradeMenu extends Menu {
     }
 
     @Override
+    protected void onMenuClick(Player player, int slot, InventoryAction action, ClickType click, ItemStack cursor, ItemStack clicked, boolean cancelled) {
+        if (buttons.containsKey(slot)) {
+            Button button = buttons.get(slot);
+            button.onClickedInMenu(player, this, click);
+        }
+    }
+
+    @Override
     public ItemStack getItemAt(int slot) {
-        return BUTTONS.get(slot).getItem();
+        if (buttons.containsKey(slot)) {
+            return buttons.get(slot).getItem();
+        }
+        return NO_ITEM;
     }
 
     @Override

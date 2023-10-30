@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.citizensnpcs.api.npc.NPC;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.mineacademy.fo.plugin.SimplePlugin;
@@ -29,8 +30,10 @@ public class GamePlayer {
 	
 	private int position = 1;
 
+	@Setter
 	private boolean arrested = false;
 
+	@Setter
 	private int skips = 0;
 
 	public void addBalance(int amount) {
@@ -66,10 +69,13 @@ public class GamePlayer {
 
 					int i = (gamePlayer.getPosition() + 1) % room.getTiles().size();
 					if (i < (gamePlayer.getPosition() + 1)) {
+						gamePlayer.addBalance(200000);
+						gamePlayer.getPlayer().sendMessage("§9§lBANCO §fVocê passou pelo ponto de partida e ganhou §b§l$200.000§f!");
 						i += 1;
 					}
 
 					gamePlayer.setPosition(i);
+					gamePlayer.getPlayer().playSound(Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING, Sound.Source.PLAYER, 0.5f, 1));
 				} else {
 					gamePlayer.getPlayer().setExp(0);
 					cancel();
@@ -77,8 +83,7 @@ public class GamePlayer {
 					runnable.run();
 				}
 			}
-		}.runTaskTimer(SimplePlugin.getInstance(), 5L, 5);
-//		}.runTaskTimer(SimplePlugin.getInstance(), 20L, 20);
+		}.runTaskTimer(SimplePlugin.getInstance(), 20L, 20);
 	}
 
 	public void updatePlayer() {

@@ -14,14 +14,17 @@ import java.util.UUID;
 @Getter
 public class Tile {
 
-	private int index;
+	private final int index;
 
-	private Location location;
+	private final Location location;
 
-	private String name;
+	private final String name;
 
 	@Setter
 	private List<String> description;
+
+	@Setter
+	private List<String> schematics;
 
 	@Setter
 	private int price;
@@ -32,7 +35,7 @@ public class Tile {
 	@Setter
 	private int sell;
 
-	private TileType type = TileType.PURCHASABLE;
+	private final TileType type;
 
 	@Setter
 	private Property property;
@@ -79,20 +82,21 @@ public class Tile {
 
 					for (Crop crop : this.getProperty().getCrops().stream().distinct().toList()) {
 						if (!crops.isEmpty()) {
-							crops.append(" &e| &7");
+							crops.append(" &6| ");
 						}
-						crops.append(this.getProperty().getCrops().stream().filter(c -> c == crop).count()).append("x ").append(crop.getName());
+						crops.append("&e").append(this.getProperty().getCrops().stream().filter(c -> c == crop).count()).append("x ").append(crop.getName());
 					}
 
 					hologramLines.add("&d&lPropriedade");
 					hologramLines.add("&7" + this.getName());
+					hologramLines.add(crops.toString());
 					hologramLines.add("&fProprietário: &d" + owner.getName());
 					hologramLines.add("&fAluguel: &d$" + this.getRent());
 					hologramLines.add("#ICON: PLAYER_HEAD (" + owner.getName() + ")");
-					hologramLines.add(crops.toString());
 
 					ownedHologramLines.add("&b&lSua propriedade");
 					ownedHologramLines.add("&7" + this.getName());
+					ownedHologramLines.add(crops.toString());
 					ownedHologramLines.add("&fVenda: &b$" + this.getSell());
 					ownedHologramLines.add("&fAluguel: &b$" + this.getRent());
 					ownedHologramLines.add("#ICON: PLAYER_HEAD (" + owner.getName() + ")");

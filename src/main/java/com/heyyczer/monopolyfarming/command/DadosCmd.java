@@ -1,5 +1,6 @@
 package com.heyyczer.monopolyfarming.command;
 
+import com.heyyczer.monopolyfarming.controller.DiceController;
 import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.helper.DiceHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
@@ -8,6 +9,7 @@ import com.heyyczer.monopolyfarming.model.GameStatus;
 import com.heyyczer.monopolyfarming.model.Tile;
 import com.heyyczer.monopolyfarming.model.interfaces.ICommand;
 import dev.jorel.commandapi.CommandAPICommand;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.entity.Player;
 
 public class DadosCmd implements ICommand {
@@ -25,34 +27,7 @@ public class DadosCmd implements ICommand {
                         return;
                     }
 
-                    GamePlayer currentPlayer = room.getPlayers().get(room.getTurnController().CURRENT_PLAYER_INDEX);
-                    if (currentPlayer.getPlayer().getUniqueId() != player.getUniqueId()) {
-                        player.sendMessage("§cAinda não é seu turno para jogar!");
-                        return;
-                    }
-
-                    if (room.getTurnController().isWaiting()) {
-                        player.sendMessage("§cVocê já está se movimentando!");
-                        return;
-                    }
-
-                    // randomize 2 dices (1-6)
-                    int number1 = DiceHelper.getRandomNumber(System.currentTimeMillis());
-                    int number2 = DiceHelper.getRandomNumber(System.currentTimeMillis() + 10);
-                    int total = number1 + number2;
-
-                    player.sendMessage("§aVocê tirou §b" + number1 + " §ae §b" + number2 + " §anos dados. Andando §b" + total + " §acasas...");
-
-                    room.getPlayers().forEach(p -> {
-                        if (p.getPlayer().getUniqueId() == player.getUniqueId()) return;
-
-                        p.getPlayer().sendMessage("§6" + player.getName() + " §etirou §6" + number1 + " §ee §6" + number2 + " §enos dados. Andando §6" + total + " §ecasas...");
-					});
-					
-					currentPlayer.move(total, () -> {
-						Tile tile = room.getTiles().get(currentPlayer.getPosition());
-						tile.onPlayerLand(currentPlayer, total);
-					});
+                    DiceController.rollDices(room, player);
                 })
                 .register();
     }

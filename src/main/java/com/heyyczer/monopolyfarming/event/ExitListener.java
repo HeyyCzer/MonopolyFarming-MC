@@ -19,6 +19,8 @@ public class ExitListener implements Listener {
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		// Remove player from any game
 		GameRoom gameRoom = GameController.getGameRoomByPlayer(event.getPlayer());
+		if (gameRoom == null) return;
+
 		ArrayList<GamePlayer> players = gameRoom.getPlayers().stream()
 				.filter(gamePlayer -> gamePlayer.getPlayer().getUniqueId() != event.getPlayer().getUniqueId())
 				.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);

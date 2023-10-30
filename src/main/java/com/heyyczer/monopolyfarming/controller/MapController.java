@@ -52,6 +52,7 @@ public class MapController {
 			);
 
 			t.setDescription(config.getStringList(configKey + ".description"));
+			t.setSchematics(config.getStringList(configKey + ".schematics"));
 			t.setPrice(config.getInt(configKey + ".price"));
 			t.setRent(config.getInt(configKey + ".rent"));
 			t.setSell(config.getInt(configKey + ".sell"));

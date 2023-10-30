@@ -13,7 +13,7 @@ public enum Crop {
 	POTATO(new ItemStack(Material.POTATO), "Batata", 10000, 13),
 	CARROT(new ItemStack(Material.CARROT), "Cenoura", 10000, 16),
 	BEETROOT(new ItemStack(Material.BEETROOT), "Beterraba", 10000, 20),
-	COW(new ItemStack(Material.BEEF), "Gado", 10000, 33);
+	COW(new ItemStack(Material.BEEF), "Gado", 10000, 24);
 
 	private ItemStack icon;
 

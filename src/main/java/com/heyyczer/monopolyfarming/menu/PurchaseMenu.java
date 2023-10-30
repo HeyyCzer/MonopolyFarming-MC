@@ -1,9 +1,11 @@
 package com.heyyczer.monopolyfarming.menu;
 
+import com.heyyczer.monopolyfarming.controller.BuildController;
 import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.Tile;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.mineacademy.fo.menu.Menu;
@@ -57,6 +59,11 @@ public class PurchaseMenu extends Menu {
                     tile.getProperty().setOwner(gamePlayer.get());
 
                     p.sendMessage("§aVocê comprou a propriedade §b" + tile.getName() + "§a!");
+                    p.playSound(Sound.sound(org.bukkit.Sound.ENTITY_PLAYER_LEVELUP, Sound.Source.PLAYER, 0.5f, 1));
+
+                    if (!tile.getSchematics().isEmpty()) {
+                        BuildController.pasteSchematic(tile.getLocation().clone().add(0.0, 2.0, 0.0), tile.getSchematics());
+                    }
 
                     tile.buildHologram(gameRoom.getUuid());
                 });
