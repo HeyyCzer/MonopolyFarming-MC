@@ -54,7 +54,7 @@ public class Tile {
 	}
 
 	public void buildHologram(UUID uuid) {
-		final Location holoLoc = this.getLocation().clone().add(0.5f, 3f, 0.5f);
+		final Location holoLoc = this.getLocation().clone().add(0.5f, 3.25f, 0.5f);
 
 		Player owner = null;
 		final List<String> hologramLines = new ArrayList<>();
