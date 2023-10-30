@@ -87,7 +87,6 @@ public class Tile {
 					hologramLines.add("&d&lPropriedade");
 					hologramLines.add("&7" + this.getName());
 					hologramLines.add("&fProprietário: &d" + owner.getName());
-					hologramLines.add("&fPreço: &d$" + this.getPrice());
 					hologramLines.add("&fAluguel: &d$" + this.getRent());
 					hologramLines.add("#ICON: PLAYER_HEAD (" + owner.getName() + ")");
 					hologramLines.add(crops.toString());
@@ -133,6 +132,11 @@ public class Tile {
 	}
 	
 	public void onPlayerLand(GamePlayer player, int diceValue) {
+		System.out.println(this.getName());
+		System.out.println(player.getPlayer().getName());
+		System.out.println(this.getType().toString());
+		System.out.println(this);
+
 		switch (this.getType()) {
 			case CORNER:
 				this.getCorner().getHandler().onPlayerLand(player, this, diceValue);

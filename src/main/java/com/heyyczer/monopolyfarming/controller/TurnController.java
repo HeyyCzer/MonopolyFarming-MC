@@ -1,15 +1,13 @@
 package com.heyyczer.monopolyfarming.controller;
 
-import java.util.UUID;
-
-import org.bukkit.entity.Player;
-
 import com.heyyczer.monopolyfarming.helper.TitleHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class TurnController {
 
@@ -26,7 +24,7 @@ public class TurnController {
     public int CURRENT_PLAYER_INDEX = 0;
 
 	public void nextPlayer() {
-		final GameRoom gameRoom = GameController.GAMES.get(this.getUuid());
+		final GameRoom gameRoom = GameController.Games.get(this.getUuid());
 
         CURRENT_PLAYER_INDEX = (CURRENT_PLAYER_INDEX + 1) % gameRoom.getPlayers().size();
 

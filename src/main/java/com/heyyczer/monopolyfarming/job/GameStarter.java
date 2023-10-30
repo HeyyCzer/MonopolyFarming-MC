@@ -1,28 +1,25 @@
 package com.heyyczer.monopolyfarming.job;
 
-import java.util.Map;
-import java.util.UUID;
-
-import org.bukkit.Bukkit;
-
-import com.heyyczer.monopolyfarming.Main;
 import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.helper.TitleHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
+import org.mineacademy.fo.plugin.SimplePlugin;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
+import java.util.Map;
+import java.util.UUID;
 
 public class GameStarter {
 
     public static void startRunnable() {
-        Bukkit.getScheduler().runTaskTimer(Main.getInstance(), task -> {
-			for (Map.Entry<UUID, GameRoom> game : GameController.GAMES.entrySet()) {
+        Bukkit.getScheduler().runTaskTimer(SimplePlugin.getInstance(), task -> {
+			for (Map.Entry<UUID, GameRoom> game : GameController.getGames().entrySet()) {
 				if (game.getValue().getStatus() == GameStatus.STARTED) {
                     for (GamePlayer player : game.getValue().getPlayers()) {
-                        player.getPlayer().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§aSaldo: §b$" + player.getBalance()));
+                        player.getPlayer().sendActionBar(Component.text("§aSaldo: §b$" + player.getBalance()).asComponent());
                     }
                     continue;
                 }
@@ -44,7 +41,7 @@ public class GameStarter {
                     newGame.setTimeToStart(timeToStart - 1);
                 }
 
-                GameController.GAMES.put(game.getKey(), newGame);
+                GameController.getGames().put(game.getKey(), newGame);
             }
         }, 20L, 20L);
     }

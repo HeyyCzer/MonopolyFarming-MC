@@ -1,7 +1,5 @@
 package com.heyyczer.monopolyfarming.command;
 
-import org.bukkit.entity.Player;
-
 import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.helper.DiceHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
@@ -9,8 +7,8 @@ import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
 import com.heyyczer.monopolyfarming.model.Tile;
 import com.heyyczer.monopolyfarming.model.interfaces.ICommand;
-
 import dev.jorel.commandapi.CommandAPICommand;
+import org.bukkit.entity.Player;
 
 public class DadosCmd implements ICommand {
 
@@ -39,8 +37,8 @@ public class DadosCmd implements ICommand {
                     }
 
                     // randomize 2 dices (1-6)
-                    int number1 = DiceHelper.getRandomNumber();
-                    int number2 = DiceHelper.getRandomNumber();
+                    int number1 = DiceHelper.getRandomNumber(System.currentTimeMillis());
+                    int number2 = DiceHelper.getRandomNumber(System.currentTimeMillis() + 10);
                     int total = number1 + number2;
 
                     player.sendMessage("§aVocê tirou §b" + number1 + " §ae §b" + number2 + " §anos dados. Andando §b" + total + " §acasas...");

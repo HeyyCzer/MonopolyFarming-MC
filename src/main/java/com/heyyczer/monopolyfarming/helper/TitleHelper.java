@@ -1,11 +1,10 @@
 package com.heyyczer.monopolyfarming.helper;
 
-import java.time.Duration;
-
-import org.bukkit.entity.Player;
-
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
+import org.bukkit.entity.Player;
+
+import java.time.Duration;
 
 public class TitleHelper {
 

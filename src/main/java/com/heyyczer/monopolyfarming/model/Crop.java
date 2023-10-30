@@ -1,10 +1,9 @@
 package com.heyyczer.monopolyfarming.model;
 
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 @Getter
 @AllArgsConstructor

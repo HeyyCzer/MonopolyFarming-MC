@@ -1,16 +1,15 @@
 package com.heyyczer.monopolyfarming.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import com.heyyczer.monopolyfarming.menu.UpgradeMenu;
+import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.menu.PurchaseMenu;
-
+import com.heyyczer.monopolyfarming.menu.UpgradeMenu;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
@@ -40,6 +39,9 @@ public class Property {
 
 			player.getPlayer().sendMessage("§c§lPAGO §fVocê caiu na propriedade §e" + tile.getName() + " §fde §e" + owner.getPlayer().getName() + " §fe pagou §e$" + tile.getRent() + "§f.");
 			owner.getPlayer().sendMessage("§a§lRECEBIDO §fO jogador §b" + player.getPlayer().getName() + " §fcaiu em sua propriedade §b" + tile.getName() + " §fe te pagou §b$" + tile.getRent() + "§f.");
+
+			GameController.getGames().get(player.getGameUUID()).getTurnController().nextPlayer();
+			GameController.getGames().get(player.getGameUUID()).getTurnController().setWaiting(false);
 		}
 	}
 
