@@ -1,20 +1,18 @@
 package com.heyyczer.monopolyfarming.model;
 
+import com.heyyczer.monopolyfarming.controller.MapController;
+import com.heyyczer.monopolyfarming.controller.TurnController;
+import com.heyyczer.monopolyfarming.helper.TitleHelper;
+import lombok.Getter;
+import lombok.Setter;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.mineacademy.fo.plugin.SimplePlugin;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-
-import com.heyyczer.monopolyfarming.Main;
-import com.heyyczer.monopolyfarming.controller.MapController;
-import com.heyyczer.monopolyfarming.controller.TurnController;
-import com.heyyczer.monopolyfarming.helper.TitleHelper;
-
-import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class GameRoom {
@@ -68,7 +66,7 @@ public class GameRoom {
 		}
 
 		// Start the turn controller
-		Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> this.turnController.nextPlayer(), 5 * 20L);
+		Bukkit.getScheduler().runTaskLater(SimplePlugin.getInstance(), () -> this.turnController.nextPlayer(), 5 * 20L);
 	}
 
 }

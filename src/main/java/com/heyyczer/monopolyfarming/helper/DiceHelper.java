@@ -4,13 +4,11 @@ import java.util.Random;
 
 public class DiceHelper {
 
-    private static final Random random = new Random();
+    private static final int MIN = 1;
+    private static final int MAX = 6;
 
-    private static final int min = 1;
-    private static final int max = 6;
-
-    public static int getRandomNumber() {
-        return random.nextInt(max - min) + min;
+    public static int getRandomNumber(long seed) {
+        return new Random(seed).nextInt(MAX - MIN) + MIN;
     }
 
 }

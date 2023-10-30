@@ -1,19 +1,18 @@
 package com.heyyczer.monopolyfarming;
 
-import java.io.File;
-import java.util.List;
-
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.mineacademy.fo.plugin.SimplePlugin;
-
 import com.heyyczer.monopolyfarming.command.DadosCmd;
+import com.heyyczer.monopolyfarming.command.StuckCmd;
 import com.heyyczer.monopolyfarming.event.ExitListener;
 import com.heyyczer.monopolyfarming.event.JoinListener;
 import com.heyyczer.monopolyfarming.job.GameStarter;
 import com.heyyczer.monopolyfarming.model.interfaces.ICommand;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.mineacademy.fo.plugin.SimplePlugin;
+
+import java.io.File;
+import java.util.List;
 
 public class Main extends SimplePlugin {
 
@@ -21,8 +20,8 @@ public class Main extends SimplePlugin {
     private static YamlConfiguration tilesConfig;
 
     private static final List<ICommand> COMMANDS = List.of(
-//            new CreateProperty()
-            new DadosCmd()
+            new DadosCmd(),
+            new StuckCmd()
     );
 
     @Override

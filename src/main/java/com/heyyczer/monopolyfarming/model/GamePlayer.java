@@ -1,18 +1,16 @@
 package com.heyyczer.monopolyfarming.model;
 
-import java.util.UUID;
-
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import com.heyyczer.monopolyfarming.Main;
 import com.heyyczer.monopolyfarming.controller.GameController;
-
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.citizensnpcs.api.npc.NPC;
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.mineacademy.fo.plugin.SimplePlugin;
+
+import java.util.UUID;
 
 @Getter
 @RequiredArgsConstructor
@@ -51,7 +49,7 @@ public class GamePlayer {
 	}
 
 	public void move(int totalTiles, Runnable runnable) {
-		final GameRoom room = GameController.GAMES.get(this.gameUUID);
+		final GameRoom room = GameController.getGames().get(this.gameUUID);
 		room.getTurnController().setWaiting(true);
 		
 		final GamePlayer gamePlayer = this;
@@ -65,21 +63,26 @@ public class GamePlayer {
 				if (walked < totalTiles) {
 					walked++;
 					gamePlayer.getPlayer().setLevel(totalTiles - walked);
-					gamePlayer.setPosition((gamePlayer.getPosition() + 1) % room.getTiles().size());
+
+					int i = (gamePlayer.getPosition() + 1) % room.getTiles().size();
+					if (i < (gamePlayer.getPosition() + 1)) {
+						i += 1;
+					}
+
+					gamePlayer.setPosition(i);
 				} else {
 					gamePlayer.getPlayer().setExp(0);
-					// room.getTurnController().nextPlayer();
-					// room.getTurnController().setWaiting(false);
 					cancel();
 
 					runnable.run();
 				}
 			}
-		}.runTaskTimer(Main.getInstance(), 20L, 20);
+		}.runTaskTimer(SimplePlugin.getInstance(), 5L, 5);
+//		}.runTaskTimer(SimplePlugin.getInstance(), 20L, 20);
 	}
 
 	public void updatePlayer() {
-		final GameRoom room = GameController.GAMES.get(gameUUID);
+		final GameRoom room = GameController.getGames().get(gameUUID);
 		room.getPlayers().stream().filter(gamePlayer -> gamePlayer.getPlayer().getUniqueId() == player.getUniqueId())
 				.forEach(gamePlayer -> {
 					if (gamePlayer.getPlayer().getUniqueId() == this.getPlayer().getUniqueId()) {

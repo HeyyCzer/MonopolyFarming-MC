@@ -1,23 +1,18 @@
 package com.heyyczer.monopolyfarming.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
+import com.heyyczer.monopolyfarming.Main;
+import com.heyyczer.monopolyfarming.model.*;
+import com.onarandombox.MultiverseCore.MultiverseCore;
+import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import com.heyyczer.monopolyfarming.Main;
-import com.heyyczer.monopolyfarming.model.Corner;
-import com.heyyczer.monopolyfarming.model.Property;
-import com.heyyczer.monopolyfarming.model.Special;
-import com.heyyczer.monopolyfarming.model.Tile;
-import com.heyyczer.monopolyfarming.model.TileType;
-import com.onarandombox.MultiverseCore.MultiverseCore;
-import com.onarandombox.MultiverseCore.api.MVWorldManager;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 public class MapController {
 
@@ -63,13 +58,13 @@ public class MapController {
 
 			switch (type) {
 				case CORNER:
-					t.setCorner(new Corner(GameController.CORNERS.get(index)));
+					t.setCorner(new Corner(GameController.Corners.get(index)));
 					break;
 				case PURCHASABLE:
 					t.setProperty(new Property());
 					break;
 				case SPECIAL:
-					t.setSpecial(new Special(GameController.SPECIALS.get(index)));
+					t.setSpecial(new Special(GameController.Specials.get(index)));
 					break;
 				default:
 					break;
