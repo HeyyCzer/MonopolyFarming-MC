@@ -1,6 +1,7 @@
 package com.heyyczer.monopolyfarming.model;
 
 import com.heyyczer.monopolyfarming.controller.GameController;
+import com.heyyczer.monopolyfarming.helper.NumberHelper;
 import com.heyyczer.monopolyfarming.menu.PurchaseMenu;
 import com.heyyczer.monopolyfarming.menu.UpgradeMenu;
 import lombok.Getter;
@@ -41,8 +42,8 @@ public class Property {
 			player.getPlayer().playSound(Sound.sound(org.bukkit.Sound.ENTITY_CREEPER_HURT, Sound.Source.PLAYER, 0.5f, 1));
 			owner.getPlayer().playSound(Sound.sound(org.bukkit.Sound.ENTITY_PLAYER_LEVELUP, Sound.Source.PLAYER, 0.5f, 1));
 
-			player.getPlayer().sendMessage("§c§lPAGO §fVocê caiu na propriedade §e" + tile.getName() + " §fde §e" + owner.getPlayer().getName() + " §fe pagou §e$" + tile.getRent() + "§f.");
-			owner.getPlayer().sendMessage("§a§lRECEBIDO §fO jogador §b" + player.getPlayer().getName() + " §fcaiu em sua propriedade §b" + tile.getName() + " §fe te pagou §b$" + tile.getRent() + "§f.");
+			player.getPlayer().sendMessage("§c§lPAGO §fVocê caiu na propriedade §e" + tile.getName() + " §fde §e" + owner.getPlayer().getName() + " §fe pagou §e$" + NumberHelper.format(tile.getRent()) + "§f.");
+			owner.getPlayer().sendMessage("§a§lRECEBIDO §fO jogador §b" + player.getPlayer().getName() + " §fcaiu em sua propriedade §b" + tile.getName() + " §fe te pagou §b$" + NumberHelper.format(tile.getRent()) + "§f.");
 
 			GameController.getGames().get(player.getGameUUID()).getTurnController().nextPlayer();
 			GameController.getGames().get(player.getGameUUID()).getTurnController().setWaiting(false);

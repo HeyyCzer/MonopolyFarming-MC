@@ -2,6 +2,7 @@ package com.heyyczer.monopolyfarming.menu;
 
 import com.heyyczer.monopolyfarming.controller.BuildController;
 import com.heyyczer.monopolyfarming.controller.GameController;
+import com.heyyczer.monopolyfarming.helper.NumberHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.Tile;
@@ -40,16 +41,16 @@ public class PurchaseMenu extends Menu {
                         .skullUrl("https://textures.minecraft.net/texture/209299a117bee88d3262f6ab98211fba344ecae39b47ec848129706dedc81e4f")
                         .name("&aComprar: &e" + tile.getName())
                         .lore(
-                                "&fPreço: &b$" + tile.getPrice(),
-                                "&fAluguel: &b$" + tile.getRent(),
-                                "&fVenda: &b$" + tile.getSell(),
+                                "&fPreço: &b$" + NumberHelper.format(tile.getPrice()),
+                                "&fAluguel: &b$" + NumberHelper.format(tile.getRent()),
+                                "&fVenda: &b$" + NumberHelper.format(tile.getSell()),
                                 "",
                                 "&eClique para adquirir"
                         ),
 
                 p -> {
                     if (gamePlayer.get().getBalance() < tile.getPrice()) {
-                        p.sendMessage("§cVocê não tem dinheiro suficiente para comprar este aprimoramento!");
+                        p.sendMessage("§cVocê não tem dinheiro suficiente para comprar essa propriedade!");
                         return;
                     }
 

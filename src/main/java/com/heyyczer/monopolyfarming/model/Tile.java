@@ -1,5 +1,6 @@
 package com.heyyczer.monopolyfarming.model;
 
+import com.heyyczer.monopolyfarming.helper.NumberHelper;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import lombok.Getter;
@@ -70,8 +71,8 @@ public class Tile {
 					hologramLines.add("&a&lPropriedade (À venda)");
 					hologramLines.add("&7" + this.getName());
 					hologramLines.add("&fProprietário: &8Ninguém");
-					hologramLines.add("&fPreço: &a$" + this.getPrice());
-					hologramLines.add("&fAluguel: &a$" + this.getRent());
+					hologramLines.add("&fPreço: &a$" + NumberHelper.format(this.getPrice()));
+					hologramLines.add("&fAluguel: &a$" + NumberHelper.format(this.getRent()));
 					hologramLines.add(
 							"#ICON: PLAYER_HEAD (eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjA5Mjk5YTExN2JlZTg4ZDMyNjJmNmFiOTgyMTFmYmEzNDRlY2FlMzliNDdlYzg0ODEyOTcwNmRlZGM4MWU0ZiJ9fX0=)");
 				} else {
@@ -91,14 +92,14 @@ public class Tile {
 					hologramLines.add("&7" + this.getName());
 					hologramLines.add(crops.toString());
 					hologramLines.add("&fProprietário: &d" + owner.getName());
-					hologramLines.add("&fAluguel: &d$" + this.getRent());
+					hologramLines.add("&fAluguel: &d$" + NumberHelper.format(this.getRent()));
 					hologramLines.add("#ICON: PLAYER_HEAD (" + owner.getName() + ")");
 
 					ownedHologramLines.add("&b&lSua propriedade");
 					ownedHologramLines.add("&7" + this.getName());
 					ownedHologramLines.add(crops.toString());
-					ownedHologramLines.add("&fVenda: &b$" + this.getSell());
-					ownedHologramLines.add("&fAluguel: &b$" + this.getRent());
+					ownedHologramLines.add("&fVenda: &b$" + NumberHelper.format(this.getSell()));
+					ownedHologramLines.add("&fAluguel: &b$" + NumberHelper.format(this.getRent()));
 					ownedHologramLines.add("#ICON: PLAYER_HEAD (" + owner.getName() + ")");
 				}
 				break;
@@ -136,11 +137,6 @@ public class Tile {
 	}
 	
 	public void onPlayerLand(GamePlayer player, int diceValue) {
-		System.out.println(this.getName());
-		System.out.println(player.getPlayer().getName());
-		System.out.println(this.getType().toString());
-		System.out.println(this);
-
 		switch (this.getType()) {
 			case CORNER:
 				this.getCorner().getHandler().onPlayerLand(player, this, diceValue);

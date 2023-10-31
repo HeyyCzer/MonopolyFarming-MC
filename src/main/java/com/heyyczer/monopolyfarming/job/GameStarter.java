@@ -1,6 +1,7 @@
 package com.heyyczer.monopolyfarming.job;
 
 import com.heyyczer.monopolyfarming.controller.GameController;
+import com.heyyczer.monopolyfarming.helper.NumberHelper;
 import com.heyyczer.monopolyfarming.helper.TitleHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
@@ -19,7 +20,7 @@ public class GameStarter {
 			for (Map.Entry<UUID, GameRoom> game : GameController.getGames().entrySet()) {
 				if (game.getValue().getStatus() == GameStatus.STARTED) {
                     for (GamePlayer player : game.getValue().getPlayers()) {
-                        player.getPlayer().sendActionBar(Component.text("§aSaldo: §b$" + player.getBalance()).asComponent());
+                        player.getPlayer().sendActionBar(Component.text("§aSaldo: §b$" + NumberHelper.format(player.getBalance())).asComponent());
                     }
                     continue;
                 }

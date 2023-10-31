@@ -27,12 +27,15 @@ public class DiceController {
         int number2 = DiceHelper.getRandomNumber(System.currentTimeMillis() + 10);
         int total = number1 + number2;
 
+        boolean movePlayer = false;
+
         if (!currentPlayer.isArrested()) {
             player.sendMessage("§aVocê tirou §b" + number1 + " §ae §b" + number2 + " §anos dados. Andando §b" + total + " §acasas...");
             player.playSound(Sound.sound(org.bukkit.Sound.BLOCK_NOTE_BLOCK_PLING, Sound.Source.PLAYER, 0.5f, 1));
+            movePlayer = true;
         } else {
             if (number1 == number2) {
-                player.sendMessage("§a§lBOA! §fVocê optou por dados iguais e conseguiu! Os números foram §a" + number1 + " §fe §a" + number2 + "§f. Você está livre da prisão!");
+                player.sendMessage("§a§lBOA! §fVocê optou por dados iguais e conseguiu! Os números foram §a" + number1 + " §fe §a" + number2 + "§f. Você está livre da cadeia!");
                 player.playSound(Sound.sound(org.bukkit.Sound.UI_TOAST_CHALLENGE_COMPLETE, Sound.Source.PLAYER, 0.5f, 1));
                 currentPlayer.setSkips(0);
                 currentPlayer.setArrested(false);
@@ -50,7 +53,7 @@ public class DiceController {
                 p.getPlayer().sendMessage("§6" + player.getName() + " §etirou §6" + number1 + " §ee §6" + number2 + " §enos dados. Andando §6" + total + " §ecasas...");
             } else {
                 if (number1 == number2) {
-                    p.getPlayer().sendMessage("§d" + player.getName() + " §foptou por dados iguais e conseguiu! Os números foram §d" + number1 + " §fe §d" + number2 + "§f. Está livre da prisão!");
+                    p.getPlayer().sendMessage("§d" + player.getName() + " §foptou por dados iguais e conseguiu! Os números foram §d" + number1 + " §fe §d" + number2 + "§f. Está livre da cadeia!");
                     p.getPlayer().playSound(Sound.sound(org.bukkit.Sound.ENTITY_PLAYER_LEVELUP, Sound.Source.PLAYER, 0.5f, 1));
                 } else {
                     p.getPlayer().sendMessage("§e" + player.getName() + " §foptou por dados iguais, mas os números foram §e" + number1 + " §fe §e" + number2 + "§f. Pulando a vez...");
@@ -59,10 +62,12 @@ public class DiceController {
             }
         });
 
-        currentPlayer.move(total, () -> {
-            Tile tile = room.getTiles().get(currentPlayer.getPosition());
-            tile.onPlayerLand(currentPlayer, total);
-        });
+        if (movePlayer) {
+            currentPlayer.move(total, () -> {
+                Tile tile = room.getTiles().get(currentPlayer.getPosition());
+                tile.onPlayerLand(currentPlayer, total);
+            });
+        }
     }
 
 }

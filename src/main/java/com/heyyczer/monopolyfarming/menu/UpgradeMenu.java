@@ -47,7 +47,7 @@ public class UpgradeMenu extends Menu {
 
                     p -> {
                         if (gamePlayer.get().getBalance() < crop.getUnitPrice()) {
-                            p.sendMessage("§cVocê não tem dinheiro suficiente para comprar esta melhoria!");
+                            p.sendMessage("§cVocê não tem dinheiro suficiente para comprar essa melhoria!");
                             return;
                         }
 

@@ -1,8 +1,8 @@
 package com.heyyczer.monopolyfarming.menu;
 
-import com.heyyczer.monopolyfarming.controller.BuildController;
 import com.heyyczer.monopolyfarming.controller.DiceController;
 import com.heyyczer.monopolyfarming.controller.GameController;
+import com.heyyczer.monopolyfarming.helper.NumberHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.Tile;
@@ -26,6 +26,8 @@ public class ArrestMenu extends Menu {
     @Position(start = StartPosition.CENTER, value = 2)
     private Button payButton;
 
+    private boolean paid = false;
+
     public ArrestMenu(Player player) {
         final GameRoom gameRoom = GameController.getGameRoomByPlayer(player);
         final Optional<GamePlayer> gamePlayer = gameRoom.getPlayers()
@@ -33,7 +35,7 @@ public class ArrestMenu extends Menu {
 
         final Tile tile = gameRoom.getTiles().get(gamePlayer.get().getPosition());
 
-        setTitle("&8Comprar propriedade");
+        setTitle("&8Cadeia");
         setSize(9 * 3);
 
         this.tryDices = Button.makeSimple(
@@ -42,21 +44,14 @@ public class ArrestMenu extends Menu {
                         .name("&eTentar dados iguais")
                         .lore(
                                 "§fJogue os dados, se os §bresultados §fforem §biguais",
-                                "§fvocê será §bliberado da prisão§f, mas se não,",
+                                "§fvocê será §bliberado da cadeia§f, mas se não,",
                                 "§fvocê perderá a vez.",
                                 "§f",
                                 "§eVocê está preso por §6" + gamePlayer.get().getSkips() + " jogadas"
                         ),
 
                 p -> {
-                    if (gamePlayer.get().getBalance() < tile.getPrice()) {
-                        p.sendMessage("§cVocê não tem dinheiro suficiente para comprar este aprimoramento!");
-                        return;
-                    }
-
                     getInventory().close();
-
-                    DiceController.rollDices(gameRoom, p);
                 });
 
         this.payButton = Button.makeSimple(
@@ -64,16 +59,17 @@ public class ArrestMenu extends Menu {
                         .skullUrl("https://textures.minecraft.net/texture/209299a117bee88d3262f6ab98211fba344ecae39b47ec848129706dedc81e4f")
                         .name("&ePagar fiança")
                         .lore(
-                                "§fPague §b$" + tile.getPrice() + " §fpara sair da prisão",
+                                "§fPague §b$" + NumberHelper.format(tile.getPrice()) + " §fpara sair da cadeia",
                                 "§f",
                                 "§eVocê está preso por §6" + gamePlayer.get().getSkips() + " jogadas"
                         ),
 
                 p -> {
                     if (gamePlayer.get().getBalance() < tile.getPrice()) {
-                        p.sendMessage("§cVocê não tem dinheiro suficiente para comprar este aprimoramento!");
+                        p.sendMessage("§cVocê não tem dinheiro suficiente para pagar a fiança!");
                         return;
                     }
+                    paid = true;
 
                     getInventory().close();
 
@@ -86,9 +82,9 @@ public class ArrestMenu extends Menu {
 
     @Override
     protected void onMenuClose(Player player, Inventory inventory) {
+        if (paid) return;
         final GameRoom gameRoom = GameController.getGameRoomByPlayer(player);
-        gameRoom.getTurnController().nextPlayer();
-        gameRoom.getTurnController().setWaiting(false);
+        DiceController.rollDices(gameRoom, player);
     }
 
 }

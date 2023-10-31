@@ -1,13 +1,13 @@
 package com.heyyczer.monopolyfarming.command;
 
 import com.heyyczer.monopolyfarming.controller.GameController;
-import com.heyyczer.monopolyfarming.helper.DiceHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
 import com.heyyczer.monopolyfarming.model.Tile;
 import com.heyyczer.monopolyfarming.model.interfaces.ICommand;
 import dev.jorel.commandapi.CommandAPICommand;
+import dev.jorel.commandapi.arguments.IntegerArgument;
 import org.bukkit.entity.Player;
 
 public class StuckCmd implements ICommand {
@@ -16,6 +16,9 @@ public class StuckCmd implements ICommand {
     public void register() {
         // Create our command
         new CommandAPICommand("stuck")
+                .withOptionalArguments(
+                    new IntegerArgument("total")
+                )
                 .executes((sender, args) -> {
                     Player player = (Player) sender;
 
@@ -25,8 +28,18 @@ public class StuckCmd implements ICommand {
                         return;
                     }
 
-                    room.getTurnController().nextPlayer();
-                    room.getTurnController().setWaiting(false);
+//                    room.getTurnController().nextPlayer();
+//                    room.getTurnController().setWaiting(false);
+
+                    if (args.argsMap().containsKey("total")) {
+                        Integer total = (Integer) args.get("total");
+                        final GamePlayer gamePlayer = room.getPlayers().get(room.getTurnController().CURRENT_PLAYER_INDEX);
+
+                        gamePlayer.move(total, () -> {
+                            Tile tile = room.getTiles().get(gamePlayer.getPosition());
+                            tile.onPlayerLand(gamePlayer, total);
+                        });
+                    }
                 })
                 .register();
     }
