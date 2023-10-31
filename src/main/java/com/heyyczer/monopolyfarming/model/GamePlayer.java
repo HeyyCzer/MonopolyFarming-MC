@@ -83,8 +83,7 @@ public class GamePlayer {
 					runnable.run();
 				}
 			}
-		}.runTaskTimer(SimplePlugin.getInstance(), 20L, 5L);
-//		}.runTaskTimer(SimplePlugin.getInstance(), 20L, 20);
+		}.runTaskTimer(SimplePlugin.getInstance(), 20L, 20);
 	}
 
 	public void updatePlayer() {
