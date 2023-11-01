@@ -11,12 +11,15 @@ import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.IntegerArgument;
 import org.bukkit.entity.Player;
 
-public class StuckCmd implements ICommand {
+public class TilesCmd implements ICommand {
 
     @Override
     public void register() {
         // Create our command
-        new CommandAPICommand("stuck")
+        new CommandAPICommand("tiles")
+                .withOptionalArguments(
+                    new IntegerArgument("total")
+                )
                 .withPermission(CommandPermission.OP)
                 .executes((sender, args) -> {
                     Player player = (Player) sender;
@@ -27,8 +30,15 @@ public class StuckCmd implements ICommand {
                         return;
                     }
 
-                    room.getTurnController().nextPlayer();
-                    room.getTurnController().setWaiting(false);
+                    if (args.argsMap().containsKey("total")) {
+                        Integer total = (Integer) args.get("total");
+                        final GamePlayer gamePlayer = room.getPlayers().get(room.getTurnController().CURRENT_PLAYER_INDEX);
+
+                        gamePlayer.move(total, () -> {
+                            Tile tile = room.getTiles().get(gamePlayer.getPosition());
+                            tile.onPlayerLand(gamePlayer, total);
+                        });
+                    }
                 })
                 .register();
     }

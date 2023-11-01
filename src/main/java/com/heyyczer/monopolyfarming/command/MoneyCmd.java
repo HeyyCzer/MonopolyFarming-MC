@@ -1,6 +1,7 @@
 package com.heyyczer.monopolyfarming.command;
 
 import com.heyyczer.monopolyfarming.controller.GameController;
+import com.heyyczer.monopolyfarming.helper.NumberHelper;
 import com.heyyczer.monopolyfarming.model.GamePlayer;
 import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.GameStatus;
@@ -11,13 +12,16 @@ import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.IntegerArgument;
 import org.bukkit.entity.Player;
 
-public class StuckCmd implements ICommand {
+public class MoneyCmd implements ICommand {
 
     @Override
     public void register() {
         // Create our command
-        new CommandAPICommand("stuck")
+        new CommandAPICommand("cheatmoney")
                 .withPermission(CommandPermission.OP)
+                .withArguments(
+                    new IntegerArgument("total")
+                )
                 .executes((sender, args) -> {
                     Player player = (Player) sender;
 
@@ -27,8 +31,11 @@ public class StuckCmd implements ICommand {
                         return;
                     }
 
-                    room.getTurnController().nextPlayer();
-                    room.getTurnController().setWaiting(false);
+                    Integer total = (Integer) args.get("total");
+                    final GamePlayer gamePlayer = room.getPlayers().get(room.getTurnController().CURRENT_PLAYER_INDEX);
+
+                    gamePlayer.addBalance(total);
+                    player.sendMessage("§fVocê recebeu §a$" + NumberHelper.format(total) + " §fde dinheiro!");
                 })
                 .register();
     }
