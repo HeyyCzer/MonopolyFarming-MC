@@ -39,11 +39,26 @@ public class BuildController {
                     clipboard = clipboardReader.read();
 
                     AffineTransform transform = new AffineTransform();
-                    transform = transform.rotateY((Math.round(location.getYaw() / 45) * 45) - 90.0);
 
-                    if (transform.isIdentity()) {
-                        transform = null;
-                    }
+                    double rotation = 0.0;
+                    int yaw = Math.round(location.getYaw() / 90) * 90;
+                    System.out.println(yaw);
+
+                    if (yaw == 90)
+                        rotation = 0.0;
+
+                    else if (yaw == 180.0 || yaw == -180.0)
+                        rotation = -90.0;
+
+                    else if (yaw == -90)
+                        rotation = -180.0;
+
+                    else if (yaw == 0)
+                        rotation = 90.0;
+
+                    System.out.println(rotation);
+
+                    transform = transform.rotateY(rotation);
 
                     clipboard.paste(world, blockVector3,  false, true, true, transform);
                 } catch (IOException e) {
