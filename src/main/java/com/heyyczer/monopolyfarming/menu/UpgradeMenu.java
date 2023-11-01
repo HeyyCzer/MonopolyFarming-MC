@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.mineacademy.fo.menu.Menu;
 import org.mineacademy.fo.menu.button.Button;
 import org.mineacademy.fo.menu.model.ItemCreator;
+import org.mineacademy.fo.remain.CompMaterial;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,9 +35,12 @@ public class UpgradeMenu extends Menu {
         setSize(9 * 4);
 
         for (Crop crop : Crop.values()) {
+            final boolean hasMoney = (gamePlayer.get().getBalance() >= crop.getUnitPrice());
+
             buttons.put(crop.getChestSlot(), Button.makeSimple(
-                    ItemCreator.of(crop.getIcon())
-                            .name("&a" + crop.getName())
+                    ItemCreator.of(hasMoney ? crop.getIcon() : CompMaterial.RED_CONCRETE.toItem())
+                            .name((hasMoney ? "&a" : "&c") + crop.getName())
+                            .glow(tile.getProperty().getCrops().contains(crop))
                             .lore(
                                     "&fQuant. Adquirida: &b"
                                             + tile.getProperty().getCrops().stream().filter(c -> c == crop).count()
