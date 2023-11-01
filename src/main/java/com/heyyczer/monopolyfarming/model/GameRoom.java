@@ -7,12 +7,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.mineacademy.fo.plugin.SimplePlugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 public class GameRoom {
@@ -42,6 +40,8 @@ public class GameRoom {
 	}
 
 	public void startGame() {
+		Collections.shuffle(this.getPlayers());
+
 		for (GamePlayer player : this.getPlayers()) {
 			TitleHelper.sendTitle(player.getPlayer(), "§e§lINICIANDO...", "O mapa está sendo preparado, aguarde...", 0,
 					30000, 0);
@@ -67,6 +67,16 @@ public class GameRoom {
 
 		// Start the turn controller
 		Bukkit.getScheduler().runTaskLater(SimplePlugin.getInstance(), () -> this.turnController.nextPlayer(), 5 * 20L);
+	}
+
+	public List<Tile> getPlayerTiles(Player player) {
+		return this.getTiles().values().stream().filter(tile -> {
+			GamePlayer owner = tile.getOwner();
+			if (owner != null) {
+				return owner.getPlayer().getUniqueId() == player.getUniqueId();
+			}
+			return false;
+		}).toList();
 	}
 
 }

@@ -29,9 +29,7 @@ public class GameStarter {
 
 				int timeToStart = game.getValue().getTimeToStart();
 
-				game.getValue().getPlayers().forEach(player -> {
-					TitleHelper.sendTitle(player.getPlayer(), "§a§lINICIANDO", "O jogo iniciará em §e" + timeToStart + " segundos", 0, 5000, 0);
-				});
+				game.getValue().getPlayers().forEach(player -> TitleHelper.sendTitle(player.getPlayer(), "§a§lINICIANDO", "O jogo iniciará em §e" + timeToStart + " segundos", 0, 5000, 0));
 
                 GameRoom newGame = game.getValue();
                 if (timeToStart <= 0) {
