@@ -42,7 +42,6 @@ public class BuildController {
 
                     double rotation = 0.0;
                     int yaw = Math.round(location.getYaw() / 90) * 90;
-                    System.out.println(yaw);
 
                     if (yaw == 90)
                         rotation = 0.0;
@@ -55,8 +54,6 @@ public class BuildController {
 
                     else if (yaw == 0)
                         rotation = 90.0;
-
-                    System.out.println(rotation);
 
                     transform = transform.rotateY(rotation);
 

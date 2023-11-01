@@ -4,12 +4,18 @@ import com.heyyczer.monopolyfarming.command.DadosCmd;
 import com.heyyczer.monopolyfarming.command.MoneyCmd;
 import com.heyyczer.monopolyfarming.command.StuckCmd;
 import com.heyyczer.monopolyfarming.command.TilesCmd;
+import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.event.ExitListener;
 import com.heyyczer.monopolyfarming.event.JoinListener;
 import com.heyyczer.monopolyfarming.job.GameStarter;
+import com.heyyczer.monopolyfarming.model.GameRoom;
 import com.heyyczer.monopolyfarming.model.interfaces.ICommand;
+import com.onarandombox.MultiverseCore.MultiverseCore;
+import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import lombok.Getter;
 import lombok.Setter;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.mineacademy.fo.plugin.SimplePlugin;
 
@@ -49,7 +55,15 @@ public class Main extends SimplePlugin {
 
     @Override
     public void onPluginStop() {
-        // Plugin shutdown logic
+        for (GameRoom gameRoom : GameController.getGames().values()) {
+            gameRoom.getPlayers().forEach(player -> player.getPlayer().kick(Component.text("§cO jogo foi cancelado devido a falta de jogadores!")));
+
+            MultiverseCore core = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");
+            MVWorldManager worldManager = core.getMVWorldManager();
+
+            final String worldName = "game-" + gameRoom.getUuid();
+            worldManager.deleteWorld(worldName);
+        }
     }
 
 }

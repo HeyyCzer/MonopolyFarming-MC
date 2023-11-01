@@ -66,7 +66,10 @@ public class GameRoom {
 		}
 
 		// Start the turn controller
-		Bukkit.getScheduler().runTaskLater(SimplePlugin.getInstance(), () -> this.turnController.nextPlayer(), 5 * 20L);
+		Bukkit.getScheduler().runTaskLater(SimplePlugin.getInstance(), () -> {
+			this.turnController.nextPlayer();
+			this.turnController.setWaiting(false);
+		}, 5 * 20L);
 	}
 
 	public List<Tile> getPlayerTiles(Player player) {

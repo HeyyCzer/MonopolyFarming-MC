@@ -150,4 +150,12 @@ public class Tile {
 		}
 	}
 
+	public GamePlayer getOwner() {
+        return switch (this.getType()) {
+            case PURCHASABLE -> this.getProperty().getOwner();
+            case SPECIAL -> this.getSpecial().getOwner();
+            default -> null;
+        };
+	}
+
 }

@@ -27,7 +27,7 @@ public class GamePlayer {
     private NPC playerNpc;
 
 	private int balance = 1000000;
-	
+
 	private int position = 1;
 
 	@Setter
@@ -67,8 +67,8 @@ public class GamePlayer {
 					walked++;
 					gamePlayer.getPlayer().setLevel(totalTiles - walked);
 
-					int i = (gamePlayer.getPosition() + 1) % room.getTiles().size();
-					if (i < (gamePlayer.getPosition() + 1)) {
+					int i = (gamePlayer.getPosition() + 1) % (room.getTiles().size() + 1);
+					if (i < (gamePlayer.getPosition())) {
 						gamePlayer.addBalance(200000);
 						gamePlayer.getPlayer().sendMessage("§9§lBANCO §fVocê passou pelo ponto de partida e ganhou §b§l$200.000§f!");
 						i += 1;
@@ -83,7 +83,8 @@ public class GamePlayer {
 					runnable.run();
 				}
 			}
-		}.runTaskTimer(SimplePlugin.getInstance(), 20L, 20);
+		}.runTaskTimer(SimplePlugin.getInstance(), 10L, 5);
+//		}.runTaskTimer(SimplePlugin.getInstance(), 20L, 20);
 	}
 
 	public void updatePlayer() {

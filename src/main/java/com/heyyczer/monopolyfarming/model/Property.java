@@ -3,6 +3,7 @@ package com.heyyczer.monopolyfarming.model;
 import com.heyyczer.monopolyfarming.controller.GameController;
 import com.heyyczer.monopolyfarming.helper.NumberHelper;
 import com.heyyczer.monopolyfarming.menu.PurchaseMenu;
+import com.heyyczer.monopolyfarming.menu.SellMenu;
 import com.heyyczer.monopolyfarming.menu.UpgradeMenu;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,21 @@ public class Property {
 
 		// Is owned by someone else
 		} else {
+			GameRoom gameRoom = GameController.getGames().get(player.getGameUUID());
+			if (player.getBalance() < tile.getRent()) {
+				gameRoom.getPlayers().forEach(p -> {
+					if (p.getPlayer().getUniqueId() == player.getPlayer().getUniqueId()) return;
+
+					p.getPlayer().sendMessage("§c" + player.getPlayer().getName() + " §fnão tem dinheiro suficiente para pagar o aluguel da propriedade §c" + tile.getName() + "§f.");
+				});
+
+				new SellMenu(player.getPlayer(), () -> {
+					gameRoom.getTurnController().nextPlayer();
+					gameRoom.getTurnController().setWaiting(false);
+				}).displayTo(player.getPlayer());
+				return;
+			}
+
 			player.subtractBalance(tile.getRent());
 			owner.addBalance(tile.getRent());
 

@@ -21,7 +21,7 @@ public class TurnController {
 	}
 
 	@Getter @Setter
-    private boolean waiting = false;
+    private boolean waiting = true;
 
     public int CURRENT_PLAYER_INDEX = 0;
 

@@ -18,7 +18,7 @@ public class DiceController {
         }
 
         if (room.getTurnController().isWaiting()) {
-            player.sendMessage("§cVocê já está se movimentando!");
+            player.sendMessage("§cAinda não é sua vez de jogar!");
             return;
         }
 
