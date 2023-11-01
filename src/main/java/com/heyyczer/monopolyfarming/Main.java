@@ -1,7 +1,9 @@
 package com.heyyczer.monopolyfarming;
 
 import com.heyyczer.monopolyfarming.command.DadosCmd;
+import com.heyyczer.monopolyfarming.command.MoneyCmd;
 import com.heyyczer.monopolyfarming.command.StuckCmd;
+import com.heyyczer.monopolyfarming.command.TilesCmd;
 import com.heyyczer.monopolyfarming.event.ExitListener;
 import com.heyyczer.monopolyfarming.event.JoinListener;
 import com.heyyczer.monopolyfarming.job.GameStarter;
@@ -21,15 +23,14 @@ public class Main extends SimplePlugin {
 
     private static final List<ICommand> COMMANDS = List.of(
             new DadosCmd(),
-            new StuckCmd()
+            new StuckCmd(),
+            new TilesCmd(),
+            new MoneyCmd()
     );
 
     @Override
     public void onPluginStart() {
         GameStarter.startRunnable();
-
-        // Connect to database
-        // ConnectionFactory.open();
 
         for (ICommand command : COMMANDS)
             command.register();
